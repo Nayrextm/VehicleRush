@@ -472,6 +472,7 @@ Transform:
   m_Children:
   - {fileID: 1234745293}
   - {fileID: 332720708}
+  - {fileID: 662596687}
   m_Father: {fileID: 1473100075}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &615818574
@@ -536,6 +537,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3897408a093b5a5478b5885d24b2b823, type: 3}
   m_PrefabInstance: {fileID: 615818574}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &662596686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 662596687}
+  m_Layer: 0
+  m_Name: EjectionPort
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &662596687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662596686}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.516, y: 0.702, z: 0.056}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 611139526}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &712328693
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,6 +829,7 @@ GameObject:
   - component: {fileID: 1473100075}
   - component: {fileID: 1473100076}
   - component: {fileID: 1473100077}
+  - component: {fileID: 1473100078}
   m_Layer: 0
   m_Name: TurretGun
   m_TagString: Untagged
@@ -849,11 +882,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _projectilePrefab: {fileID: 169476306063315915, guid: cfef4311cf11d5548846082a5b33b062, type: 3}
   _firePoint: {fileID: 332720708}
+  _shellEjector: {fileID: 1473100078}
   _fireRate: 0.2
   _bulletSpeed: 40
   _bulletLifetime: 2
   _defaultCapacity: 10
   _maxSize: 50
+--- !u!114 &1473100078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473100074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37d22c7ca6109144bf595e5d042624c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _shellPrefab: {fileID: 6094995093049905895, guid: 02236803e34ab184983397cd34ce135c, type: 3}
+  _ejectionPort: {fileID: 662596687}
+  _ejectForce: 5
+  _defaultCapacity: 15
+  _maxSize: 30
 --- !u!1 &1713224175
 GameObject:
   m_ObjectHideFlags: 0

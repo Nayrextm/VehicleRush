@@ -10,6 +10,7 @@ namespace Project.Gameplay
         [Header("References")]
         [SerializeField] private Projectile _projectilePrefab;
         [SerializeField] private Transform _firePoint;
+        [SerializeField] private ShellEjector _shellEjector;
 
         [Header("Combat Settings")]
         [SerializeField] private float _fireRate = 0.2f;
@@ -80,6 +81,7 @@ namespace Project.Gameplay
             bullet.transform.rotation = _firePoint.rotation;
 
             bullet.Init(_bulletPool, _bulletSpeed, _bulletLifetime);
+            _shellEjector?.Eject();
         }
 
         private Projectile CreateProjectile()

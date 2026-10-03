@@ -10,7 +10,7 @@ namespace Project.Core
 
         public GameStateManager()
         {
-            CurrentState = GameState.Menu;
+            CurrentState = GameState.Playing;
         }
 
         public void ChangeState(GameState newState)
