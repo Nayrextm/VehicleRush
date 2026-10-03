@@ -72,13 +72,15 @@ namespace Project.Gameplay
 
         private void Shoot()
         {
-            if (_bulletPool != null)
-            {
-                _bulletPool.Get();
-            }
-        }
+            if (_bulletPool == null || _firePoint == null) return;
 
-        #region Object Pool Callbacks
+            Projectile bullet = _bulletPool.Get();
+
+            bullet.transform.position = _firePoint.position;
+            bullet.transform.rotation = _firePoint.rotation;
+
+            bullet.Init(_bulletPool, _bulletSpeed, _bulletLifetime);
+        }
 
         private Projectile CreateProjectile()
         {
@@ -87,11 +89,7 @@ namespace Project.Gameplay
 
         private void OnTakeFromPool(Projectile projectile)
         {
-            projectile.transform.position = _firePoint.position;
-            projectile.transform.rotation = _firePoint.rotation;
             projectile.gameObject.SetActive(true);
-
-            projectile.Init(_bulletPool, _bulletSpeed, _bulletLifetime);
         }
 
         private void OnReturnedToPool(Projectile projectile)
@@ -103,7 +101,5 @@ namespace Project.Gameplay
         {
             Destroy(projectile.gameObject);
         }
-
-        #endregion
     }
 }
