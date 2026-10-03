@@ -13,6 +13,7 @@ namespace Project.Bootstrap
         [SerializeField] private CarMovement _carMovement;
         [SerializeField] private CarEntity _carEntity;
         [SerializeField] private TurretAiming _turretAiming;
+        [SerializeField] private TurretWeapon _turretWeapon;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -23,6 +24,8 @@ namespace Project.Bootstrap
             builder.RegisterComponent(_carMovement);
             builder.RegisterComponent(_carEntity);
             builder.RegisterComponent(_turretAiming);
+            builder.RegisterComponent(_turretWeapon);
+
         }
     }
 }

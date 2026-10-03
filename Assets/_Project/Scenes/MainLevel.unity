@@ -796,6 +796,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1473100075}
   - component: {fileID: 1473100076}
+  - component: {fileID: 1473100077}
   m_Layer: 0
   m_Name: TurretGun
   m_TagString: Untagged
@@ -834,6 +835,25 @@ MonoBehaviour:
   _turretHead: {fileID: 611139526}
   _rotationSpeed: 0.2
   _maxAngle: 60
+--- !u!114 &1473100077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473100074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bf1a67e39ff8a34ea126e403f35cce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _projectilePrefab: {fileID: 169476306063315915, guid: cfef4311cf11d5548846082a5b33b062, type: 3}
+  _firePoint: {fileID: 332720708}
+  _fireRate: 0.2
+  _bulletSpeed: 40
+  _bulletLifetime: 2
+  _defaultCapacity: 10
+  _maxSize: 50
 --- !u!1 &1713224175
 GameObject:
   m_ObjectHideFlags: 0
@@ -965,6 +985,7 @@ MonoBehaviour:
   _carMovement: {fileID: 1382095774}
   _carEntity: {fileID: 1382095775}
   _turretAiming: {fileID: 1473100076}
+  _turretWeapon: {fileID: 1473100077}
 --- !u!4 &1881607356
 Transform:
   m_ObjectHideFlags: 0
