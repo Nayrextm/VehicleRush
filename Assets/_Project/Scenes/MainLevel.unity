@@ -1000,6 +1000,53 @@ MonoBehaviour:
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
   FollowOffset: {x: 0, y: 4, z: -7}
+--- !u!1 &1799260295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1799260296}
+  - component: {fileID: 1799260297}
+  m_Layer: 0
+  m_Name: '[LevelManager]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1799260296
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799260295}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1799260297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1799260295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8b4bbe81f49b4b4c87ed4ad6102f48b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _roadPrefab: {fileID: 1217950320101849634, guid: adb025dcdba94a344a4276314a000a66, type: 3}
+  _segmentsCount: 5
+  _segmentLength: 75
 --- !u!1 &1881607354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1037,6 +1084,7 @@ MonoBehaviour:
   _carEntity: {fileID: 1382095775}
   _turretAiming: {fileID: 1473100076}
   _turretWeapon: {fileID: 1473100077}
+  _endlessRoadManager: {fileID: 1799260297}
 --- !u!4 &1881607356
 Transform:
   m_ObjectHideFlags: 0
@@ -1061,3 +1109,4 @@ SceneRoots:
   - {fileID: 1881607356}
   - {fileID: 1382095773}
   - {fileID: 951715392}
+  - {fileID: 1799260296}
