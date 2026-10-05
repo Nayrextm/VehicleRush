@@ -15,6 +15,7 @@ namespace Project.Bootstrap
         [SerializeField] private TurretAiming _turretAiming;
         [SerializeField] private TurretWeapon _turretWeapon;
         [SerializeField] private EndlessRoadManager _endlessRoadManager;
+        [SerializeField] private EnemySpawner _enemySpawner;
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -27,6 +28,7 @@ namespace Project.Bootstrap
             builder.RegisterComponent(_turretAiming);
             builder.RegisterComponent(_turretWeapon);
             builder.RegisterComponent(_endlessRoadManager);
+            builder.RegisterComponent(_enemySpawner);
 
         }
     }
