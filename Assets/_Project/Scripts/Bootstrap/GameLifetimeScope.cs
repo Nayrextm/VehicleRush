@@ -4,6 +4,7 @@ using UnityEngine;
 using VContainer;
 using Project.Services;
 using VContainer.Unity;
+using Project.UI;
 
 namespace Project.Bootstrap
 {
@@ -16,6 +17,9 @@ namespace Project.Bootstrap
         [SerializeField] private TurretWeapon _turretWeapon;
         [SerializeField] private EndlessRoadManager _endlessRoadManager;
         [SerializeField] private EnemySpawner _enemySpawner;
+        [SerializeField] private PlayerDeathObserver _playerDeathObserver;
+        [SerializeField] private LoseScreenUI _loseScreenUI;
+
 
         protected override void Configure(IContainerBuilder builder)
         {
@@ -29,6 +33,8 @@ namespace Project.Bootstrap
             builder.RegisterComponent(_turretWeapon);
             builder.RegisterComponent(_endlessRoadManager);
             builder.RegisterComponent(_enemySpawner);
+            builder.RegisterComponent(_playerDeathObserver);
+            builder.RegisterComponent(_loseScreenUI);
 
         }
     }

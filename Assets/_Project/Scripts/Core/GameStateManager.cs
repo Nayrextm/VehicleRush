@@ -5,8 +5,7 @@ namespace Project.Core
     public class GameStateManager
     {
         public GameState CurrentState { get; private set; }
-
-        public event Action<GameState> OnStateChanged;
+        public event Action<GameState, GameState> OnStateChanged;
 
         public GameStateManager()
         {
@@ -16,8 +15,11 @@ namespace Project.Core
         public void ChangeState(GameState newState)
         {
             if (CurrentState == newState) return;
+
+            GameState previousState = CurrentState;
             CurrentState = newState;
-            OnStateChanged?.Invoke(CurrentState);
+
+            OnStateChanged?.Invoke(previousState, CurrentState);
         }
     }
 }

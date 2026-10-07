@@ -5,7 +5,9 @@
         "Core",
         "UniTask",
         "UniTask.DOTween",
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "VContainer",
+        "DOTween.Modules"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -121,7 +121,7 @@ namespace Project.Gameplay
             ReturnToPool();
         }
 
-        private void ReturnToPool()
+        public void ReturnToPool()
         {
             if (gameObject.activeSelf && _pool != null)
                 _pool.Release(this);
