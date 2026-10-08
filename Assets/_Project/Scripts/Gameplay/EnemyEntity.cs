@@ -20,6 +20,7 @@ namespace Project.Gameplay
         private GameStateManager _gameStateManager;
         private Transform _playerTransform;
         private Health _health;
+        private VFXPoolService _vfxService;
         private EnemyState _currentState = EnemyState.Sleep;
 
         private Vector3 _wanderDirection;
@@ -33,11 +34,12 @@ namespace Project.Gameplay
             }
         }
 
-        public void Init(IObjectPool<EnemyEntity> pool, Transform player, GameStateManager gameState)
+        public void Init(IObjectPool<EnemyEntity> pool, Transform player, GameStateManager gameState, VFXPoolService vfxService)
         {
             _pool = pool;
             _playerTransform = player;
             _gameStateManager = gameState;
+            _vfxService = vfxService;
             _currentState = EnemyState.Sleep;
             _wanderDirectionTimer = 0f;
 
@@ -55,6 +57,12 @@ namespace Project.Gameplay
         private void OnDisable()
         {
             if (_health != null) _health.OnDied -= HandleDeath;
+
+            if (TryGetComponent(out EnemyVisuals visuals))
+            {
+                visuals.enabled = false;
+                visuals.enabled = true;
+            }
         }
 
         private void Update()
@@ -116,9 +124,19 @@ namespace Project.Gameplay
             }
         }
 
+        public void Explode()
+        {
+            if (_vfxService != null)
+            {
+                _vfxService.PlayDeathEffect(transform.position + Vector3.up);
+            }
+
+            ReturnToPool();
+        }
+
         private void HandleDeath()
         {
-            ReturnToPool();
+            Explode();
         }
 
         public void ReturnToPool()

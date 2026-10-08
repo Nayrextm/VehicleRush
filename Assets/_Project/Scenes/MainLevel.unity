@@ -1880,6 +1880,7 @@ MonoBehaviour:
   _enemySpawner: {fileID: 1980742195}
   _playerDeathObserver: {fileID: 1382095777}
   _loseScreenUI: {fileID: 1641762870}
+  _deathEffectPrefab: {fileID: 7747108939808005453, guid: 163e69479051dce4abd3626ae9b591f3, type: 3}
 --- !u!4 &1881607356
 Transform:
   m_ObjectHideFlags: 0
@@ -1924,7 +1925,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de5ac40bb969cdf4bb66dbbb114725a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: -4228374840522655804, guid: f5356b8fd6680e545900a922d177bcda, type: 3}
+  _enemyPrefab: {fileID: 2834728846553834463, guid: f5356b8fd6680e545900a922d177bcda, type: 3}
   _spawnZOffset: 120
   _spawnInterval: 4
   _clusterSizeMin: 3

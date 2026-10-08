@@ -19,7 +19,7 @@ namespace Project.Gameplay
 
                     if (_enemyEntity != null)
                     {
-                        _enemyEntity.ReturnToPool();
+                        _enemyEntity.Explode();
                     }
                 }
             }

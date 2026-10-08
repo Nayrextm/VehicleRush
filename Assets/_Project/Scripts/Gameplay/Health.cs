@@ -9,6 +9,9 @@ namespace Project.Gameplay
         private int _currentHealth;
 
         public event Action<int, int> OnHealthChanged;
+
+        public event Action<int> OnDamaged;
+
         public event Action OnDied;
 
         private void Awake()
@@ -28,6 +31,8 @@ namespace Project.Gameplay
 
             _currentHealth -= amount;
             _currentHealth = Mathf.Max(0, _currentHealth);
+
+            OnDamaged?.Invoke(amount);
 
             OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
 

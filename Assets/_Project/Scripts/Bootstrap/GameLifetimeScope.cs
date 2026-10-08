@@ -20,12 +20,18 @@ namespace Project.Bootstrap
         [SerializeField] private PlayerDeathObserver _playerDeathObserver;
         [SerializeField] private LoseScreenUI _loseScreenUI;
 
+        [Header("Prefabs Configuration")]
+        [SerializeField] private PooledVFX _deathEffectPrefab;
 
         protected override void Configure(IContainerBuilder builder)
         {
             builder.Register<GameStateManager>(Lifetime.Singleton);
-
             builder.Register<SwipeInputService>(Lifetime.Singleton);
+
+            var vfxPoolService = new VFXPoolService(_deathEffectPrefab, 15);
+            vfxPoolService.PreWarm(15);
+
+            builder.RegisterInstance(vfxPoolService);
 
             builder.RegisterComponent(_carMovement);
             builder.RegisterComponent(_carEntity);
@@ -35,7 +41,6 @@ namespace Project.Bootstrap
             builder.RegisterComponent(_enemySpawner);
             builder.RegisterComponent(_playerDeathObserver);
             builder.RegisterComponent(_loseScreenUI);
-
         }
     }
 }

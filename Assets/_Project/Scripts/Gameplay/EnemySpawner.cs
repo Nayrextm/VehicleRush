@@ -24,14 +24,17 @@ namespace Project.Gameplay
         private IObjectPool<EnemyEntity> _enemyPool;
         private GameStateManager _gameStateManager;
         private CarEntity _playerEntity;
+        private VFXPoolService _vfxPoolService;
+
         private Transform _playerTransform;
         private float _nextSpawnTime;
 
         [Inject]
-        public void Construct(GameStateManager gameStateManager, CarEntity playerEntity)
+        public void Construct(GameStateManager gameStateManager, CarEntity playerEntity, VFXPoolService vfxPoolService)
         {
             _gameStateManager = gameStateManager;
             _playerEntity = playerEntity;
+            _vfxPoolService = vfxPoolService;
         }
 
         private void Awake()
@@ -87,7 +90,7 @@ namespace Project.Gameplay
 
                 enemy.transform.position = new Vector3(randomX, 0f, randomZ);
 
-                enemy.Init(_enemyPool, _playerTransform, _gameStateManager);
+                enemy.Init(_enemyPool, _playerTransform, _gameStateManager, _vfxPoolService);
             }
         }
     }
