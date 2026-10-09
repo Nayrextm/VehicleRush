@@ -19,6 +19,7 @@ namespace Project.Bootstrap
         [SerializeField] private EnemySpawner _enemySpawner;
         [SerializeField] private PlayerDeathObserver _playerDeathObserver;
         [SerializeField] private LoseScreenUI _loseScreenUI;
+        [SerializeField] private PlayerHealthUI _playerHealthUI;
 
         [Header("Prefabs Configuration")]
         [SerializeField] private PooledVFX _deathEffectPrefab;
@@ -41,6 +42,7 @@ namespace Project.Bootstrap
             builder.RegisterComponent(_enemySpawner);
             builder.RegisterComponent(_playerDeathObserver);
             builder.RegisterComponent(_loseScreenUI);
+            builder.RegisterComponent(_playerHealthUI);
         }
     }
 }
