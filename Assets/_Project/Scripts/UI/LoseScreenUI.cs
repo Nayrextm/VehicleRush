@@ -1,6 +1,8 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Project.Core;
+using Project.Gameplay;
+using TMPro;            
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
@@ -13,15 +15,18 @@ namespace Project.UI
         [Header("References")]
         [SerializeField] private RectTransform _popupTransform;
         [SerializeField] private Button _tapToContinueButton;
+        [SerializeField] private TextMeshProUGUI _finalScoreText; 
 
         private CanvasGroup _canvasGroup;
         private GameStateManager _gameStateManager;
+        private DistanceTracker _distanceTracker; 
         private Sequence _showSequence;
 
         [Inject]
-        public void Construct(GameStateManager gameStateManager)
+        public void Construct(GameStateManager gameStateManager, DistanceTracker distanceTracker)
         {
             _gameStateManager = gameStateManager;
+            _distanceTracker = distanceTracker;
         }
 
         private void Awake()
@@ -71,13 +76,17 @@ namespace Project.UI
             _canvasGroup.blocksRaycasts = true;
             _canvasGroup.interactable = true;
 
+            if (_finalScoreText != null && _distanceTracker != null)
+            {
+                _finalScoreText.SetText("{0}m", _distanceTracker.CurrentDistance);
+            }
+
             _showSequence?.Kill();
             _showSequence = DOTween.Sequence();
 
 #pragma warning disable CS4014 
             _showSequence.Append(_canvasGroup.DOFade(1f, 0.3f));
             _showSequence.Join(_popupTransform.DOScale(Vector3.one, 0.4f).SetEase(Ease.OutBack));
-
             _showSequence.SetLink(gameObject);
 #pragma warning restore CS4014 
 
