@@ -22,6 +22,7 @@ namespace Project.Bootstrap
         [SerializeField] private PlayerHealthUI _playerHealthUI;
         [SerializeField] private DistanceTracker _distanceTracker;
         [SerializeField] private DistanceProgressUI _distanceProgressUI;
+        [SerializeField] private GameplayHUDController _gameplayHUDController;
 
         [Header("Prefabs Configuration")]
         [SerializeField] private PooledVFX _deathEffectPrefab;
@@ -47,6 +48,8 @@ namespace Project.Bootstrap
             builder.RegisterComponent(_playerHealthUI);
             builder.RegisterComponent(_distanceTracker);
             builder.RegisterComponent(_distanceProgressUI);
+            builder.RegisterComponent(_gameplayHUDController);
+
         }
     }
 }
