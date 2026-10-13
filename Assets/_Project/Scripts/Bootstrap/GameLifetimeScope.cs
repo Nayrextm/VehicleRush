@@ -23,6 +23,8 @@ namespace Project.Bootstrap
         [SerializeField] private DistanceTracker _distanceTracker;
         [SerializeField] private DistanceProgressUI _distanceProgressUI;
         [SerializeField] private GameplayHUDController _gameplayHUDController;
+        [SerializeField] private CameraTransitionController _cameraTransitionController;
+        [SerializeField] private MainMenuUI _mainMenuUI;
 
         [Header("Prefabs Configuration")]
         [SerializeField] private PooledVFX _deathEffectPrefab;
@@ -49,7 +51,8 @@ namespace Project.Bootstrap
             builder.RegisterComponent(_distanceTracker);
             builder.RegisterComponent(_distanceProgressUI);
             builder.RegisterComponent(_gameplayHUDController);
-
+            builder.RegisterComponent(_cameraTransitionController);
+            builder.RegisterComponent(_mainMenuUI);
         }
     }
 }
