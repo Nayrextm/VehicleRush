@@ -25,6 +25,8 @@ namespace Project.Bootstrap
         [SerializeField] private GameplayHUDController _gameplayHUDController;
         [SerializeField] private CameraTransitionController _cameraTransitionController;
         [SerializeField] private MainMenuUI _mainMenuUI;
+        [SerializeField] private LevelProgressionManager _levelProgressionManager;
+        [SerializeField] private WinScreenUI _winScreenUI;
 
         [Header("Prefabs Configuration")]
         [SerializeField] private PooledVFX _deathEffectPrefab;
@@ -53,6 +55,8 @@ namespace Project.Bootstrap
             builder.RegisterComponent(_gameplayHUDController);
             builder.RegisterComponent(_cameraTransitionController);
             builder.RegisterComponent(_mainMenuUI);
+            builder.RegisterComponent(_levelProgressionManager);
+            builder.RegisterComponent(_winScreenUI);
         }
     }
 }

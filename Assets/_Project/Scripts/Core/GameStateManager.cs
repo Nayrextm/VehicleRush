@@ -1,4 +1,6 @@
 using System;
+using DG.Tweening;
+using UnityEngine.SceneManagement; 
 
 namespace Project.Core
 {
@@ -19,7 +21,21 @@ namespace Project.Core
             GameState previousState = CurrentState;
             CurrentState = newState;
 
+            if (newState == GameState.Menu || (previousState == GameState.Win && newState == GameState.Playing))
+            {
+                ExecuteSceneReload();
+                return; 
+            }
+
             OnStateChanged?.Invoke(previousState, CurrentState);
+        }
+
+        private void ExecuteSceneReload()
+        {
+#pragma warning disable CS4014
+            DOTween.KillAll();
+#pragma warning restore CS4014
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

@@ -2,7 +2,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using Project.Core;
 using Project.Gameplay;
-using TMPro;            
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
@@ -15,18 +15,18 @@ namespace Project.UI
         [Header("References")]
         [SerializeField] private RectTransform _popupTransform;
         [SerializeField] private Button _tapToContinueButton;
-        [SerializeField] private TextMeshProUGUI _finalScoreText; 
+        [SerializeField] private TextMeshProUGUI _finalScoreText;
 
         private CanvasGroup _canvasGroup;
         private GameStateManager _gameStateManager;
-        private DistanceTracker _distanceTracker; 
+        private LevelProgressionManager _progressionManager;
         private Sequence _showSequence;
 
         [Inject]
-        public void Construct(GameStateManager gameStateManager, DistanceTracker distanceTracker)
+        public void Construct(GameStateManager gameStateManager, LevelProgressionManager progressionManager)
         {
             _gameStateManager = gameStateManager;
-            _distanceTracker = distanceTracker;
+            _progressionManager = progressionManager;
         }
 
         private void Awake()
@@ -76,9 +76,9 @@ namespace Project.UI
             _canvasGroup.blocksRaycasts = true;
             _canvasGroup.interactable = true;
 
-            if (_finalScoreText != null && _distanceTracker != null)
+            if (_finalScoreText != null && _progressionManager != null)
             {
-                _finalScoreText.SetText("{0}m", _distanceTracker.CurrentDistance);
+                _finalScoreText.SetText(" 0m", _progressionManager.CurrentTotalDistance);
             }
 
             _showSequence?.Kill();

@@ -8,10 +8,9 @@ namespace Project.Gameplay
     {
         private GameStateManager _gameStateManager;
         private Transform _playerTransform;
-
         private float _initialPlayerZ;
 
-        public int CurrentDistance { get; private set; }
+        public int RunDistance { get; private set; }
 
         [Inject]
         public void Construct(GameStateManager gameStateManager, CarEntity playerEntity)
@@ -25,10 +24,7 @@ namespace Project.Gameplay
 
         private void Start()
         {
-            if (_playerTransform != null)
-            {
-                _initialPlayerZ = _playerTransform.position.z;
-            }
+            ResetRunDistanceOrigin();
         }
 
         private void Update()
@@ -36,7 +32,16 @@ namespace Project.Gameplay
             if (_gameStateManager == null || _gameStateManager.CurrentState != GameState.Playing || _playerTransform == null)
                 return;
 
-            CurrentDistance = Mathf.Max(0, Mathf.FloorToInt(_playerTransform.position.z - _initialPlayerZ));
+            RunDistance = Mathf.Max(0, Mathf.FloorToInt(_playerTransform.position.z - _initialPlayerZ));
+        }
+
+        public void ResetRunDistanceOrigin()
+        {
+            if (_playerTransform != null)
+            {
+                _initialPlayerZ = _playerTransform.position.z;
+            }
+            RunDistance = 0;
         }
     }
 }

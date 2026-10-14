@@ -13,7 +13,7 @@ namespace Project.UI
         [Tooltip("Background Bar Container")]
         [SerializeField] private RectTransform _barContainer;
 
-        [Tooltip("Fill Bar")]
+        [Tooltip("Fill Bar (Image Type must be Filled!)")]
         [SerializeField] private Image _fillImage;
 
         [Tooltip("Placeholder container for icon(Indicator)")]
@@ -22,18 +22,16 @@ namespace Project.UI
         [Tooltip("Distance text")]
         [SerializeField] private TextMeshProUGUI _distanceText;
 
-        [Header("Settings")]
-        [Tooltip("Distance at which the gauge fills to 100% (target in meters)")]
-        [SerializeField] private float _targetDistance = 1000f;
+        [Header("Animation Settings")]
         [SerializeField] private float _animationDuration = 0.15f;
 
-        private DistanceTracker _distanceTracker;
+        private LevelProgressionManager _progressionManager;
         private int _lastDistance = -1;
 
         [Inject]
-        public void Construct(DistanceTracker distanceTracker)
+        public void Construct(LevelProgressionManager progressionManager)
         {
-            _distanceTracker = distanceTracker;
+            _progressionManager = progressionManager;
         }
 
         private void OnDisable()
@@ -46,25 +44,27 @@ namespace Project.UI
 
         private void Update()
         {
-            if (_distanceTracker == null) return;
+            if (_progressionManager == null) return;
 
-            int currentDistance = _distanceTracker.CurrentDistance;
+            int currentTotal = _progressionManager.CurrentTotalDistance;
 
-            if (currentDistance != _lastDistance)
+            if (currentTotal != _lastDistance)
             {
-                _lastDistance = currentDistance;
-                UpdateProgress(currentDistance);
+                _lastDistance = currentTotal;
+                UpdateProgress(currentTotal);
             }
         }
 
-        private void UpdateProgress(int distance)
+        private void UpdateProgress(int totalDistance)
         {
             if (_distanceText != null)
             {
-                _distanceText.SetText("{0}m", distance);
+                _distanceText.SetText("{ 0}m", totalDistance);
             }
 
-            float progress = Mathf.Clamp01(distance / _targetDistance);
+            int levelStart = _progressionManager.CurrentLevelStart;
+            int step = _progressionManager.LevelStep;
+            float progress = Mathf.Clamp01((float)(totalDistance - levelStart) / step);
 
 #pragma warning disable CS4014
             _fillImage.DOKill();
