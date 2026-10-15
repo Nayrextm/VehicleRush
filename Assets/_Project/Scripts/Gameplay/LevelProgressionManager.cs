@@ -16,6 +16,7 @@ namespace Project.Gameplay
         private int _milestoneAtCurrentLevelStart;
 
         public int CurrentTarget { get; private set; }
+        public int CurrentLevel { get; private set; }
         public int LevelStep => _levelDistanceStep;
 
         public int CurrentLevelStart => _milestoneAtCurrentLevelStart;
@@ -34,6 +35,7 @@ namespace Project.Gameplay
             _initialMilestone = PlayerPrefs.GetInt("SavedMilestone", 0);
             CurrentTarget = PlayerPrefs.GetInt("CurrentTarget", _levelDistanceStep);
 
+            CurrentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
             _milestoneAtCurrentLevelStart = CurrentTarget - _levelDistanceStep;
         }
 
@@ -54,6 +56,9 @@ namespace Project.Gameplay
 
             CurrentTarget += _levelDistanceStep;
             PlayerPrefs.SetInt("CurrentTarget", CurrentTarget);
+
+            CurrentLevel++;
+            PlayerPrefs.SetInt("CurrentLevel", CurrentLevel);
             PlayerPrefs.Save();
 
             _milestoneAtCurrentLevelStart = CurrentTarget - _levelDistanceStep;
