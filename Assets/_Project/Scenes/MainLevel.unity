@@ -337,6 +337,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 22607966}
   m_CullTransparentMesh: 1
+--- !u!23 &73156970 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -5685597221486784678, guid: 3897408a093b5a5478b5885d24b2b823, type: 3}
+  m_PrefabInstance: {fileID: 615818574}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &122054566
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,6 +1396,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b472b38e90d503e44a01cd98ee9cebb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!23 &387706866 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1501956767115115926, guid: 3897408a093b5a5478b5885d24b2b823, type: 3}
+  m_PrefabInstance: {fileID: 615818574}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &407037352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2030,6 +2040,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457252315}
   m_CullTransparentMesh: 1
+--- !u!23 &512460655 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1053041712551660698, guid: 3897408a093b5a5478b5885d24b2b823, type: 3}
+  m_PrefabInstance: {fileID: 615818574}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &557422319
 GameObject:
   m_ObjectHideFlags: 0
@@ -4579,6 +4594,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272984482}
   m_CullTransparentMesh: 1
+--- !u!23 &1282429565 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 3897408a093b5a5478b5885d24b2b823, type: 3}
+  m_PrefabInstance: {fileID: 615818574}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1382095772
 GameObject:
   m_ObjectHideFlags: 0
@@ -4593,6 +4613,7 @@ GameObject:
   - component: {fileID: 1382095774}
   - component: {fileID: 1382095777}
   - component: {fileID: 1382095778}
+  - component: {fileID: 1382095779}
   m_Layer: 0
   m_Name: CarVehicle
   m_TagString: Player
@@ -4688,6 +4709,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.8, y: 1, z: 4.1}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &1382095779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382095772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 953220e7de671dc488af244231db3ca7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderers:
+  - {fileID: 1282429565}
+  - {fileID: 2125724561}
+  - {fileID: 73156970}
+  - {fileID: 1708282171}
+  - {fileID: 512460655}
+  - {fileID: 387706866}
+  _flashColor: {r: 1, g: 1, b: 1, a: 1}
+  _flashDuration: 0.15
 --- !u!1 &1404794222
 GameObject:
   m_ObjectHideFlags: 0
@@ -5405,6 +5447,11 @@ RectTransform:
   m_AnchoredPosition: {x: -60, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!23 &1708282171 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3129431012931780542, guid: 3897408a093b5a5478b5885d24b2b823, type: 3}
+  m_PrefabInstance: {fileID: 615818574}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1713224175
 GameObject:
   m_ObjectHideFlags: 0
@@ -5980,6 +6027,7 @@ MonoBehaviour:
   _levelIndicatorUI: {fileID: 407037354}
   _pauseScreenUI: {fileID: 178357612}
   _pauseButtonUI: {fileID: 354819583}
+  _playerVisuals: {fileID: 1382095779}
   _deathEffectPrefab: {fileID: 7747108939808005453, guid: 163e69479051dce4abd3626ae9b591f3, type: 3}
 --- !u!4 &1881607356
 Transform:
@@ -6723,6 +6771,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2052132434}
   m_CullTransparentMesh: 1
+--- !u!23 &2125724561 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: d656b0f1f58191c43a4f7001c48e6b30, type: 3}
+  m_PrefabInstance: {fileID: 1234745292}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

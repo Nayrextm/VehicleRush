@@ -30,6 +30,7 @@ namespace Project.Bootstrap
         [SerializeField] private LevelIndicatorUI _levelIndicatorUI;
         [SerializeField] private PauseScreenUI _pauseScreenUI;
         [SerializeField] private PauseButtonUI _pauseButtonUI;
+        [SerializeField] private PlayerVisuals _playerVisuals;
 
 
         [Header("Prefabs Configuration")]
@@ -64,6 +65,7 @@ namespace Project.Bootstrap
             builder.RegisterComponent(_levelIndicatorUI);
             builder.RegisterComponent(_pauseScreenUI);
             builder.RegisterComponent(_pauseButtonUI);
+            builder.RegisterComponent(_playerVisuals);
         }
     }
 }
