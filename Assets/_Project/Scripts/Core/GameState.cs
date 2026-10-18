@@ -5,6 +5,7 @@ namespace Project.Core
         Menu,
         Playing,
         Win,
-        Lose
+        Lose,
+        Pause
     }
 }

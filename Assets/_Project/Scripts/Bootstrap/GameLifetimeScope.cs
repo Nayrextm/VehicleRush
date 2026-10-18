@@ -28,6 +28,9 @@ namespace Project.Bootstrap
         [SerializeField] private LevelProgressionManager _levelProgressionManager;
         [SerializeField] private WinScreenUI _winScreenUI;
         [SerializeField] private LevelIndicatorUI _levelIndicatorUI;
+        [SerializeField] private PauseScreenUI _pauseScreenUI;
+        [SerializeField] private PauseButtonUI _pauseButtonUI;
+
 
         [Header("Prefabs Configuration")]
         [SerializeField] private PooledVFX _deathEffectPrefab;
@@ -59,6 +62,8 @@ namespace Project.Bootstrap
             builder.RegisterComponent(_levelProgressionManager);
             builder.RegisterComponent(_winScreenUI);
             builder.RegisterComponent(_levelIndicatorUI);
+            builder.RegisterComponent(_pauseScreenUI);
+            builder.RegisterComponent(_pauseButtonUI);
         }
     }
 }
