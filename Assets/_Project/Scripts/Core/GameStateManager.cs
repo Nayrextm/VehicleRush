@@ -1,6 +1,6 @@
 using System;
 using DG.Tweening;
-using UnityEngine.SceneManagement; 
+using UnityEngine.SceneManagement;
 
 namespace Project.Core
 {
@@ -21,10 +21,12 @@ namespace Project.Core
             GameState previousState = CurrentState;
             CurrentState = newState;
 
-            if (newState == GameState.Menu || (previousState == GameState.Win && newState == GameState.Playing))
+            if (previousState == GameState.Lose && newState == GameState.Menu ||
+                previousState == GameState.Win && newState == GameState.Playing ||
+                previousState == GameState.Win && newState == GameState.Menu)
             {
                 ExecuteSceneReload();
-                return; 
+                return;
             }
 
             OnStateChanged?.Invoke(previousState, CurrentState);

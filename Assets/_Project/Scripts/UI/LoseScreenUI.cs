@@ -20,13 +20,18 @@ namespace Project.UI
         private CanvasGroup _canvasGroup;
         private GameStateManager _gameStateManager;
         private LevelProgressionManager _progressionManager;
+        private DistanceTracker _distanceTracker;
         private Sequence _showSequence;
 
         [Inject]
-        public void Construct(GameStateManager gameStateManager, LevelProgressionManager progressionManager)
+        public void Construct(
+            GameStateManager gameStateManager,
+            LevelProgressionManager progressionManager,
+            DistanceTracker distanceTracker)
         {
             _gameStateManager = gameStateManager;
             _progressionManager = progressionManager;
+            _distanceTracker = distanceTracker;
         }
 
         private void Awake()
@@ -76,9 +81,9 @@ namespace Project.UI
             _canvasGroup.blocksRaycasts = true;
             _canvasGroup.interactable = true;
 
-            if (_finalScoreText != null && _progressionManager != null)
+            if (_finalScoreText != null && _distanceTracker != null)
             {
-                _finalScoreText.SetText(" 0m", _progressionManager.CurrentTotalDistance);
+                _finalScoreText.SetText("{0}m", _distanceTracker.RunDistance);
             }
 
             _showSequence?.Kill();

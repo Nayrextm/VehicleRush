@@ -21,13 +21,18 @@ namespace Project.UI
         private CanvasGroup _canvasGroup;
         private GameStateManager _gameStateManager;
         private LevelProgressionManager _progressionManager;
+        private DistanceTracker _distanceTracker; 
         private Sequence _showSequence;
 
         [Inject]
-        public void Construct(GameStateManager gameStateManager, LevelProgressionManager progressionManager)
+        public void Construct(
+            GameStateManager gameStateManager,
+            LevelProgressionManager progressionManager,
+            DistanceTracker distanceTracker)
         {
             _gameStateManager = gameStateManager;
             _progressionManager = progressionManager;
+            _distanceTracker = distanceTracker;
         }
 
         private void Awake()
@@ -62,9 +67,9 @@ namespace Project.UI
         {
             if (newState == GameState.Win)
             {
-                if (_finalScoreText != null && _progressionManager != null)
+                if (_finalScoreText != null && _distanceTracker != null)
                 {
-                    _finalScoreText.SetText(" 0m", _progressionManager.CurrentTotalDistance);
+                    _finalScoreText.SetText("{0}m", _distanceTracker.RunDistance);
                 }
                 ShowPanelWithDelayAsync().Forget();
             }
@@ -97,15 +102,11 @@ namespace Project.UI
 
         private void OnContinueClicked()
         {
-            _progressionManager.AdvanceLevel();
-
             _gameStateManager.ChangeState(GameState.Playing);
         }
 
         private void OnMenuClicked()
         {
-            _progressionManager.AdvanceLevel();
-
             _gameStateManager.ChangeState(GameState.Menu);
         }
 
@@ -120,7 +121,6 @@ namespace Project.UI
                 _popupTransform.localScale = Vector3.zero;
             }
         }
-
         private void OnDestroy()
         {
             _showSequence?.Kill();

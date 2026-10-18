@@ -12,16 +12,21 @@ namespace Project.Gameplay
         private GameStateManager _gameStateManager;
         private DistanceTracker _distanceTracker;
 
-        private int _initialMilestone;
-        private int _milestoneAtCurrentLevelStart;
+        private bool _isRunSaved = false;
 
-        public int CurrentTarget { get; private set; }
+        public int SavedTotalScore { get; private set; }
         public int CurrentLevel { get; private set; }
-        public int LevelStep => _levelDistanceStep;
+        public int CurrentLevelTarget => _levelDistanceStep;
 
-        public int CurrentLevelStart => _milestoneAtCurrentLevelStart;
-
-        public int CurrentTotalDistance => _initialMilestone + (_distanceTracker != null ? _distanceTracker.RunDistance : 0);
+        public int DisplayScore
+        {
+            get
+            {
+                if (_isRunSaved) return SavedTotalScore;
+                int currentRun = _distanceTracker != null ? _distanceTracker.RunDistance : 0;
+                return SavedTotalScore + currentRun;
+            }
+        }
 
         [Inject]
         public void Construct(GameStateManager gameStateManager, DistanceTracker distanceTracker)
@@ -32,11 +37,27 @@ namespace Project.Gameplay
 
         private void Awake()
         {
-            _initialMilestone = PlayerPrefs.GetInt("SavedMilestone", 0);
-            CurrentTarget = PlayerPrefs.GetInt("CurrentTarget", _levelDistanceStep);
-
+            SavedTotalScore = PlayerPrefs.GetInt("TotalScore", 0);
             CurrentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
-            _milestoneAtCurrentLevelStart = CurrentTarget - _levelDistanceStep;
+
+            if (CurrentLevel < 1)
+            {
+                CurrentLevel = 1;
+                PlayerPrefs.SetInt("CurrentLevel", 1);
+                PlayerPrefs.Save();
+            }
+        }
+
+        private void OnEnable()
+        {
+            if (_gameStateManager != null)
+                _gameStateManager.OnStateChanged += HandleStateChanged;
+        }
+
+        private void OnDisable()
+        {
+            if (_gameStateManager != null)
+                _gameStateManager.OnStateChanged -= HandleStateChanged;
         }
 
         private void Update()
@@ -44,31 +65,50 @@ namespace Project.Gameplay
             if (_gameStateManager == null || _gameStateManager.CurrentState != GameState.Playing)
                 return;
 
-            if (CurrentTotalDistance >= CurrentTarget)
-            {
+            if (_distanceTracker != null && _distanceTracker.RunDistance >= _levelDistanceStep)
+            { 
+                if (!_isRunSaved)
+                {
+                    SavedTotalScore += _distanceTracker.RunDistance;
+                    CurrentLevel++;
+
+                    PlayerPrefs.SetInt("TotalScore", SavedTotalScore);
+                    PlayerPrefs.SetInt("CurrentLevel", CurrentLevel);
+                    PlayerPrefs.Save(); 
+
+                    _isRunSaved = true;
+                }
+
                 _gameStateManager.ChangeState(GameState.Win);
             }
         }
 
-        public void AdvanceLevel()
+        private void HandleStateChanged(GameState previousState, GameState newState)
         {
-            PlayerPrefs.SetInt("SavedMilestone", CurrentTarget);
-
-            CurrentTarget += _levelDistanceStep;
-            PlayerPrefs.SetInt("CurrentTarget", CurrentTarget);
-
-            CurrentLevel++;
-            PlayerPrefs.SetInt("CurrentLevel", CurrentLevel);
-            PlayerPrefs.Save();
-
-            _milestoneAtCurrentLevelStart = CurrentTarget - _levelDistanceStep;
-
-            if (_distanceTracker != null)
+            if (newState == GameState.Playing)
             {
-                _distanceTracker.ResetRunDistanceOrigin();
+                _isRunSaved = false;
             }
 
-            _initialMilestone = PlayerPrefs.GetInt("SavedMilestone", 0);
+            if (previousState == GameState.Playing && newState == GameState.Lose)
+            {
+                if (!_isRunSaved && _distanceTracker != null)
+                {
+                    SavedTotalScore += _distanceTracker.RunDistance;
+                    PlayerPrefs.SetInt("TotalScore", SavedTotalScore);
+                    PlayerPrefs.Save();
+
+                    _isRunSaved = true;
+                }
+            }
+        }
+
+        [ContextMenu("Clear Player Prefs Saved Data")]
+        public void ClearSaveData()
+        {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
+            Debug.Log("[LevelProgressionManager] All PlayerPrefs cleared fully!");
         }
     }
 }

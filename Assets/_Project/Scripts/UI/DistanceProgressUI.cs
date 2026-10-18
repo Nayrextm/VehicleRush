@@ -25,12 +25,14 @@ namespace Project.UI
         [Header("Animation Settings")]
         [SerializeField] private float _animationDuration = 0.15f;
 
+        private DistanceTracker _distanceTracker;
         private LevelProgressionManager _progressionManager;
         private int _lastDistance = -1;
 
         [Inject]
-        public void Construct(LevelProgressionManager progressionManager)
+        public void Construct(DistanceTracker distanceTracker, LevelProgressionManager progressionManager)
         {
+            _distanceTracker = distanceTracker;
             _progressionManager = progressionManager;
         }
 
@@ -44,27 +46,25 @@ namespace Project.UI
 
         private void Update()
         {
-            if (_progressionManager == null) return;
+            if (_distanceTracker == null || _progressionManager == null) return;
 
-            int currentTotal = _progressionManager.CurrentTotalDistance;
+            int currentRunDistance = _distanceTracker.RunDistance;
 
-            if (currentTotal != _lastDistance)
+            if (currentRunDistance != _lastDistance)
             {
-                _lastDistance = currentTotal;
-                UpdateProgress(currentTotal);
+                _lastDistance = currentRunDistance;
+                UpdateProgress(currentRunDistance);
             }
         }
 
-        private void UpdateProgress(int totalDistance)
+        private void UpdateProgress(int runDistance)
         {
             if (_distanceText != null)
             {
-                _distanceText.SetText("{ 0}m", totalDistance);
+                _distanceText.SetText("{0}m", runDistance);
             }
 
-            int levelStart = _progressionManager.CurrentLevelStart;
-            int step = _progressionManager.LevelStep;
-            float progress = Mathf.Clamp01((float)(totalDistance - levelStart) / step);
+            float progress = Mathf.Clamp01((float)runDistance / _progressionManager.CurrentLevelTarget);
 
 #pragma warning disable CS4014
             _fillImage.DOKill();
