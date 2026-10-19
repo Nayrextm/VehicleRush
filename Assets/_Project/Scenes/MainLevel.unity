@@ -2336,6 +2336,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3897408a093b5a5478b5885d24b2b823, type: 3}
   m_PrefabInstance: {fileID: 615818574}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &615818576 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3018929094207593127, guid: 3897408a093b5a5478b5885d24b2b823, type: 3}
+  m_PrefabInstance: {fileID: 615818574}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &615818577 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -2965826073662530175, guid: 3897408a093b5a5478b5885d24b2b823, type: 3}
+  m_PrefabInstance: {fileID: 615818574}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &615818578 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1485697770100870613, guid: 3897408a093b5a5478b5885d24b2b823, type: 3}
+  m_PrefabInstance: {fileID: 615818574}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &615818579 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3948799767036138012, guid: 3897408a093b5a5478b5885d24b2b823, type: 3}
+  m_PrefabInstance: {fileID: 615818574}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &617691836
 GameObject:
   m_ObjectHideFlags: 0
@@ -4614,6 +4634,7 @@ GameObject:
   - component: {fileID: 1382095777}
   - component: {fileID: 1382095778}
   - component: {fileID: 1382095779}
+  - component: {fileID: 1382095780}
   m_Layer: 0
   m_Name: CarVehicle
   m_TagString: Player
@@ -4730,6 +4751,25 @@ MonoBehaviour:
   - {fileID: 387706866}
   _flashColor: {r: 1, g: 1, b: 1, a: 1}
   _flashDuration: 0.15
+--- !u!114 &1382095780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382095772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7beaf82fba719c646bdc8618042d9b14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wheels:
+  - {fileID: 615818579}
+  - {fileID: 615818578}
+  - {fileID: 615818577}
+  - {fileID: 615818576}
+  _spinDuration: 0.2
+  _rotationAxis: {x: -360, y: 0, z: 0}
 --- !u!1 &1404794222
 GameObject:
   m_ObjectHideFlags: 0
@@ -6028,6 +6068,7 @@ MonoBehaviour:
   _pauseScreenUI: {fileID: 178357612}
   _pauseButtonUI: {fileID: 354819583}
   _playerVisuals: {fileID: 1382095779}
+  _wheelRotator: {fileID: 1382095780}
   _deathEffectPrefab: {fileID: 7747108939808005453, guid: 163e69479051dce4abd3626ae9b591f3, type: 3}
 --- !u!4 &1881607356
 Transform:
