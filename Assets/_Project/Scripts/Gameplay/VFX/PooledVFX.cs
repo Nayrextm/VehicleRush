@@ -2,7 +2,7 @@ using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace Project.Gameplay
+namespace Project.Gameplay.VFX
 {
     [RequireComponent(typeof(ParticleSystem))]
     public class PooledVFX : MonoBehaviour

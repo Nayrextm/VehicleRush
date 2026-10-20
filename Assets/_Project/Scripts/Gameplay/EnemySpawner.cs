@@ -2,6 +2,7 @@ using Project.Core;
 using UnityEngine;
 using UnityEngine.Pool;
 using VContainer;
+using Project.Gameplay.VFX;
 
 namespace Project.Gameplay
 {

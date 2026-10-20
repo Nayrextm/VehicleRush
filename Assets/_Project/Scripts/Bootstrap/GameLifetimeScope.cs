@@ -1,5 +1,6 @@
 using Project.Core;
 using Project.Gameplay;
+using Project.Gameplay.VFX;
 using UnityEngine;
 using VContainer;
 using Project.Services;
@@ -30,8 +31,9 @@ namespace Project.Bootstrap
         [SerializeField] private LevelIndicatorUI _levelIndicatorUI;
         [SerializeField] private PauseScreenUI _pauseScreenUI;
         [SerializeField] private PauseButtonUI _pauseButtonUI;
-        [SerializeField] private PlayerVisuals _playerVisuals;
+        [SerializeField] private DamageFlasher _damageFlasher;
         [SerializeField] private WheelRotator _wheelRotator;
+        [SerializeField] private CarEffectsController _carEffectsController;
 
 
         [Header("Prefabs Configuration")]
@@ -66,8 +68,9 @@ namespace Project.Bootstrap
             builder.RegisterComponent(_levelIndicatorUI);
             builder.RegisterComponent(_pauseScreenUI);
             builder.RegisterComponent(_pauseButtonUI);
-            builder.RegisterComponent(_playerVisuals);
+            builder.RegisterComponent(_damageFlasher);
             builder.RegisterComponent(_wheelRotator);
+            builder.RegisterComponent(_carEffectsController);
         }
     }
 }

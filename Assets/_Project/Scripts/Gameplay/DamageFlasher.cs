@@ -4,10 +4,10 @@ using UnityEngine;
 namespace Project.Gameplay
 {
     [RequireComponent(typeof(Health))]
-    public class PlayerVisuals : MonoBehaviour
+    public class DamageFlasher : MonoBehaviour
     {
         [Header("References")]
-        [Tooltip("All Car renders (body, turret, etc)")]
+        [Tooltip("Add here all objects renders (enemy- 1, player(car) - 6 or more)")]
         [SerializeField] private Renderer[] _renderers;
 
         [Header("Settings")]
@@ -67,7 +67,7 @@ namespace Project.Gameplay
 #pragma warning restore CS4014
         }
 
-        private void HandleDamageFlash(int damage)
+        private void HandleDamageFlash(int damageAmount)
         {
             if (_instancedMaterials == null) return;
 

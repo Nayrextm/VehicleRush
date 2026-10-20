@@ -3,7 +3,7 @@ using Project.Core;
 using UnityEngine;
 using VContainer;
 
-namespace Project.Gameplay
+namespace Project.Gameplay.VFX
 {
     public class WheelRotator : MonoBehaviour
     {

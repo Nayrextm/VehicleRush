@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace Project.Gameplay
+namespace Project.Gameplay.VFX
 {
     [RequireComponent(typeof(Rigidbody))]
     public class ShellCasing : MonoBehaviour

@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace Project.Gameplay
+namespace Project.Gameplay.VFX
 {
     public class VFXPoolService : IDisposable
     {

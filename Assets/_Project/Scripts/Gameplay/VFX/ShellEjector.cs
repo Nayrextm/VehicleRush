@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.Pool;
+using Project.Gameplay;
 
-namespace Project.Gameplay
+namespace Project.Gameplay.VFX
 {
     public class ShellEjector : MonoBehaviour
     {

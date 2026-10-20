@@ -1,6 +1,7 @@
 using Project.Core;
 using UnityEngine;
 using UnityEngine.Pool;
+using Project.Gameplay.VFX;
 
 namespace Project.Gameplay
 {
@@ -57,12 +58,6 @@ namespace Project.Gameplay
         private void OnDisable()
         {
             if (_health != null) _health.OnDied -= HandleDeath;
-
-            if (TryGetComponent(out EnemyVisuals visuals))
-            {
-                visuals.enabled = false;
-                visuals.enabled = true;
-            }
         }
 
         private void Update()

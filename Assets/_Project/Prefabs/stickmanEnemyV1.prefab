@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 595323914978102541}
   - component: {fileID: 3639656017422857055}
   - component: {fileID: 2834728846553834463}
-  - component: {fileID: 5404053338634936106}
+  - component: {fileID: 8177524578430193135}
   m_Layer: 0
   m_Name: stickmanEnemyV1
   m_TagString: Enemy
@@ -117,7 +117,7 @@ MonoBehaviour:
   _chaseSpeed: 6
   _wakeUpSqrDistance: 10000
   _chaseSqrDistance: 1600
---- !u!114 &5404053338634936106
+--- !u!114 &8177524578430193135
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,10 +126,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2058861366704234963}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ae1909741ab4634887f49b166270f8f, type: 3}
+  m_Script: {fileID: 11500000, guid: 612a6c00d03329045bd7543a6698b571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _renderer: {fileID: 7318678870429565458}
+  _renderers:
+  - {fileID: 7318678870429565458}
   _flashColor: {r: 1, g: 1, b: 1, a: 1}
   _flashDuration: 0.15
 --- !u!1 &4362238125200227875
