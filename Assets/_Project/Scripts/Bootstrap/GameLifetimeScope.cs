@@ -34,6 +34,7 @@ namespace Project.Bootstrap
         [SerializeField] private DamageFlasher _damageFlasher;
         [SerializeField] private WheelRotator _wheelRotator;
         [SerializeField] private CarEffectsController _carEffectsController;
+        [SerializeField] private TurretLaserSight _turretLaserSight;
 
 
         [Header("Prefabs Configuration")]
@@ -71,6 +72,7 @@ namespace Project.Bootstrap
             builder.RegisterComponent(_damageFlasher);
             builder.RegisterComponent(_wheelRotator);
             builder.RegisterComponent(_carEffectsController);
+            builder.RegisterComponent(_turretLaserSight);
         }
     }
 }
