@@ -23,6 +23,9 @@ namespace Project.Gameplay
         [SerializeField] private int _defaultCapacity = 20;
         [SerializeField] private int _maxSize = 50;
 
+        [Tooltip("Muzzle Flash")]
+        [SerializeField] private ParticleSystem _muzzleFlash;
+
         private IObjectPool<Projectile> _bulletPool;
         private GameStateManager _gameStateManager;
         private float _nextFireTime;
@@ -76,6 +79,11 @@ namespace Project.Gameplay
         private void Shoot()
         {
             if (_bulletPool == null || _firePoint == null) return;
+
+            if (_muzzleFlash != null)
+            {
+                _muzzleFlash.Play();
+            }
 
             Projectile bullet = _bulletPool.Get();
 
