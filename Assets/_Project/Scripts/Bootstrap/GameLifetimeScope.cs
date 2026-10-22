@@ -36,6 +36,7 @@ namespace Project.Bootstrap
         [SerializeField] private CarEffectsController _carEffectsController;
         [SerializeField] private TurretLaserSight _turretLaserSight;
         [SerializeField] private PhysicsFloorFollower _physicsFloorFollower;
+        [SerializeField] private CameraShakeController _cameraShakeController;
 
 
         [Header("Prefabs Configuration")]
@@ -75,6 +76,7 @@ namespace Project.Bootstrap
             builder.RegisterComponent(_carEffectsController);
             builder.RegisterComponent(_turretLaserSight);
             builder.RegisterComponent(_physicsFloorFollower);
+            builder.RegisterComponent(_cameraShakeController);
         }
     }
 }

@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using Project.Core;
 using UnityEngine;
 using VContainer;
@@ -7,12 +8,16 @@ namespace Project.Gameplay.VFX
     public class CarEffectsController : MonoBehaviour
     {
         [Header("References: Exhaust")]
-        [Tooltip("Exhaust particles (there may be several pipes)")]
         [SerializeField] private ParticleSystem[] _exhaustParticles;
 
         [Header("References: Tire Tracks")]
-        [Tooltip("Wheel(Tire) tracks")]
         [SerializeField] private TrailRenderer[] _tireTrails;
+
+        [Header("References: Engine Fire")]
+        [Tooltip("Particles from under the hood")]
+        [SerializeField] private ParticleSystem _engineFireParticles;
+        [Tooltip("Delay before flash firing after camera shake (in milliseconds)")]
+        [SerializeField] private int _fireDelayMs = 400;
 
         private GameStateManager _gameStateManager;
 
@@ -38,6 +43,9 @@ namespace Project.Gameplay.VFX
         {
             SetEffectsActive(false);
             ClearTrails();
+
+            if (_engineFireParticles != null)
+                _engineFireParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         }
 
         private void HandleStateChanged(GameState previousState, GameState newState)
@@ -46,10 +54,36 @@ namespace Project.Gameplay.VFX
             {
                 ClearTrails();
                 SetEffectsActive(true);
+
+                if (_engineFireParticles != null)
+                {
+                    _engineFireParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                }
+            }
+            else if (newState == GameState.Lose)
+            {
+                SetEffectsActive(false);
+                PlayFireWithDelayAsync().Forget();
             }
             else
             {
                 SetEffectsActive(false);
+                if (_engineFireParticles != null)
+                {
+                    _engineFireParticles.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+                }
+            }
+        }
+
+        private async UniTaskVoid PlayFireWithDelayAsync()
+        {
+            var cancelToken = this.GetCancellationTokenOnDestroy();
+
+            await UniTask.Delay(_fireDelayMs, cancellationToken: cancelToken);
+
+            if (_engineFireParticles != null)
+            {
+                _engineFireParticles.Play();
             }
         }
 
@@ -57,15 +91,12 @@ namespace Project.Gameplay.VFX
         {
             if (_exhaustParticles != null)
             {
-#pragma warning disable CS4014
                 for (int i = 0; i < _exhaustParticles.Length; i++)
                 {
                     if (_exhaustParticles[i] == null) continue;
-
                     if (isActive) _exhaustParticles[i].Play();
-                    else _exhaustParticles[i].Stop(); 
+                    else _exhaustParticles[i].Stop();
                 }
-#pragma warning restore CS4014
             }
 
             if (_tireTrails != null)
@@ -73,7 +104,6 @@ namespace Project.Gameplay.VFX
                 for (int i = 0; i < _tireTrails.Length; i++)
                 {
                     if (_tireTrails[i] == null) continue;
-
                     _tireTrails[i].emitting = isActive;
                 }
             }
@@ -82,7 +112,6 @@ namespace Project.Gameplay.VFX
         private void ClearTrails()
         {
             if (_tireTrails == null) return;
-
             for (int i = 0; i < _tireTrails.Length; i++)
             {
                 if (_tireTrails[i] != null) _tireTrails[i].Clear();
