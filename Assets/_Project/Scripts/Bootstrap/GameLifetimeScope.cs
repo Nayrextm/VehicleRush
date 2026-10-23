@@ -37,6 +37,7 @@ namespace Project.Bootstrap
         [SerializeField] private TurretLaserSight _turretLaserSight;
         [SerializeField] private PhysicsFloorFollower _physicsFloorFollower;
         [SerializeField] private CameraShakeController _cameraShakeController;
+        [SerializeField] private TutorialSwipeUI _tutorialSwipeUI;
 
 
         [Header("Prefabs Configuration")]
@@ -77,6 +78,7 @@ namespace Project.Bootstrap
             builder.RegisterComponent(_turretLaserSight);
             builder.RegisterComponent(_physicsFloorFollower);
             builder.RegisterComponent(_cameraShakeController);
+            builder.RegisterComponent(_tutorialSwipeUI);
         }
     }
 }
