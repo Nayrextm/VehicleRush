@@ -4,7 +4,7 @@ using UnityEngine.Pool;
 using VContainer;
 using Project.Gameplay.VFX;
 
-namespace Project.Gameplay
+namespace Project.Gameplay.Enemies
 {
     public class EnemySpawner : MonoBehaviour
     {

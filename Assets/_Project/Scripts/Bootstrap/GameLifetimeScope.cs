@@ -1,6 +1,7 @@
 using Project.Core;
 using Project.Gameplay;
 using Project.Gameplay.VFX;
+using Project.Gameplay.Enemies;
 using UnityEngine;
 using VContainer;
 using Project.Services;

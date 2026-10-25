@@ -1,10 +1,13 @@
 using UnityEngine;
 
-namespace Project.Gameplay
+namespace Project.Gameplay.Enemies
 {
+    [RequireComponent(typeof(Collider))] 
     public class EnemyAttack : MonoBehaviour
     {
         [SerializeField] private int _damage = 25;
+
+        [Tooltip("Enemy Entity(Controller")]
         [SerializeField] private EnemyEntity _enemyEntity;
 
         private void OnTriggerEnter(Collider other)
