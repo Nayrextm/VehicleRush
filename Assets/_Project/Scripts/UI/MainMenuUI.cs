@@ -101,7 +101,7 @@ namespace Project.UI
 
             if (_totalScoreText != null)
             {
-                _totalScoreText.SetText("{0}m", _progressionManager.DisplayScore);
+                _totalScoreText.SetText("\u00A0{0}m", _progressionManager.DisplayScore);
             }
         }
     }

@@ -72,7 +72,7 @@ namespace Project.UI
         {
             if (_levelText != null && _progressionManager != null)
             {
-                _levelText.SetText("{0}", _progressionManager.CurrentLevel);
+                _levelText.SetText("\u00A0{0}", _progressionManager.CurrentLevel);
             }
         }
     }

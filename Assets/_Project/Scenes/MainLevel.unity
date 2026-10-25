@@ -6942,13 +6942,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 649780555}
+  m_Children: []
   m_Father: {fileID: 1466608173}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -33, y: -107.5}
+  m_AnchoredPosition: {x: -92.00012, y: -107.5}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &426902645
@@ -7037,7 +7036,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -144.89069, y: 0, z: 0, w: 0}
+  m_margin: {x: -144.89069, y: 0, z: 62.650482, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -7758,11 +7757,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 426902644}
+  m_Father: {fileID: 1466608173}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 135.99997, y: 0}
+  m_AnchoredPosition: {x: -88.00006, y: -107.5}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &649780556
@@ -7853,7 +7852,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -144.89069, y: 0, z: 0, w: 0}
+  m_margin: {x: 135.6513, y: 0, z: -57.32129, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -15187,6 +15186,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2052132435}
+  - {fileID: 649780555}
   - {fileID: 426902644}
   - {fileID: 176499482}
   m_Father: {fileID: 1490879693}
@@ -16336,7 +16336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f85223a4e7e65664081a5be4f02ca40c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelDistanceStep: 200
+  _levelDistanceStep: 150
 --- !u!1 &1803095544
 GameObject:
   m_ObjectHideFlags: 0

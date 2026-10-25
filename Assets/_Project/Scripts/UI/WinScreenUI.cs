@@ -69,7 +69,7 @@ namespace Project.UI
             {
                 if (_finalScoreText != null && _distanceTracker != null)
                 {
-                    _finalScoreText.SetText("{0}m", _distanceTracker.RunDistance);
+                    _finalScoreText.SetText("\u00A0{0}m", _distanceTracker.RunDistance);
                 }
                 ShowPanelWithDelayAsync().Forget();
             }

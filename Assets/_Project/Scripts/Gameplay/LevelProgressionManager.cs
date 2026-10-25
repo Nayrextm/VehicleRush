@@ -12,9 +12,11 @@ namespace Project.Gameplay
         private GameStateManager _gameStateManager;
         private DistanceTracker _distanceTracker;
 
-        private bool _isRunSaved = false;
+        private int _baseTotalScore;
+        private int _bestLevelScore;
 
-        public int SavedTotalScore { get; private set; }
+        private bool _isLevelCompleted = false;
+
         public int CurrentLevel { get; private set; }
         public int CurrentLevelTarget => _levelDistanceStep;
 
@@ -22,9 +24,11 @@ namespace Project.Gameplay
         {
             get
             {
-                if (_isRunSaved) return SavedTotalScore;
-                int currentRun = _distanceTracker != null ? _distanceTracker.RunDistance : 0;
-                return SavedTotalScore + currentRun;
+                int currentRun = (_gameStateManager != null && _gameStateManager.CurrentState == GameState.Playing && _distanceTracker != null)
+                    ? _distanceTracker.RunDistance
+                    : 0;
+
+                return _baseTotalScore + Mathf.Max(_bestLevelScore, currentRun);
             }
         }
 
@@ -37,14 +41,14 @@ namespace Project.Gameplay
 
         private void Awake()
         {
-            SavedTotalScore = PlayerPrefs.GetInt("TotalScore", 0);
+            _baseTotalScore = PlayerPrefs.GetInt("BaseTotalScore", 0);
+            _bestLevelScore = PlayerPrefs.GetInt("BestLevelScore", 0);
             CurrentLevel = PlayerPrefs.GetInt("CurrentLevel", 1);
 
             if (CurrentLevel < 1)
             {
                 CurrentLevel = 1;
-                PlayerPrefs.SetInt("CurrentLevel", 1);
-                PlayerPrefs.Save();
+                SaveProgress();
             }
         }
 
@@ -65,19 +69,15 @@ namespace Project.Gameplay
             if (_gameStateManager == null || _gameStateManager.CurrentState != GameState.Playing)
                 return;
 
-            if (_distanceTracker != null && _distanceTracker.RunDistance >= _levelDistanceStep)
-            { 
-                if (!_isRunSaved)
-                {
-                    SavedTotalScore += _distanceTracker.RunDistance;
-                    CurrentLevel++;
+            if (!_isLevelCompleted && _distanceTracker != null && _distanceTracker.RunDistance >= _levelDistanceStep)
+            {
+                _isLevelCompleted = true;
 
-                    PlayerPrefs.SetInt("TotalScore", SavedTotalScore);
-                    PlayerPrefs.SetInt("CurrentLevel", CurrentLevel);
-                    PlayerPrefs.Save(); 
+                _baseTotalScore += _levelDistanceStep;
+                _bestLevelScore = 0;
+                CurrentLevel++;
 
-                    _isRunSaved = true;
-                }
+                SaveProgress(); 
 
                 _gameStateManager.ChangeState(GameState.Win);
             }
@@ -87,20 +87,30 @@ namespace Project.Gameplay
         {
             if (newState == GameState.Playing)
             {
-                _isRunSaved = false;
+                _isLevelCompleted = false;
             }
 
-            if (previousState == GameState.Playing && newState == GameState.Lose)
+            else if (previousState == GameState.Playing && (newState == GameState.Lose || newState == GameState.Menu))
             {
-                if (!_isRunSaved && _distanceTracker != null)
+                if (!_isLevelCompleted && _distanceTracker != null)
                 {
-                    SavedTotalScore += _distanceTracker.RunDistance;
-                    PlayerPrefs.SetInt("TotalScore", SavedTotalScore);
-                    PlayerPrefs.Save();
+                    int runDistance = _distanceTracker.RunDistance;
 
-                    _isRunSaved = true;
+                    if (runDistance > _bestLevelScore)
+                    {
+                        _bestLevelScore = runDistance;
+                        SaveProgress();
+                    }
                 }
             }
+        }
+
+        private void SaveProgress()
+        {
+            PlayerPrefs.SetInt("BaseTotalScore", _baseTotalScore);
+            PlayerPrefs.SetInt("BestLevelScore", _bestLevelScore);
+            PlayerPrefs.SetInt("CurrentLevel", CurrentLevel);
+            PlayerPrefs.Save();
         }
 
         [ContextMenu("Clear Player Prefs Saved Data")]
@@ -108,6 +118,11 @@ namespace Project.Gameplay
         {
             PlayerPrefs.DeleteAll();
             PlayerPrefs.Save();
+
+            _baseTotalScore = 0;
+            _bestLevelScore = 0;
+            CurrentLevel = 1;
+
             Debug.Log("[LevelProgressionManager] All PlayerPrefs cleared fully!");
         }
     }
